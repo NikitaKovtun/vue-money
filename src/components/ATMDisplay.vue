@@ -113,6 +113,7 @@ export default {
           bill.count = bill.count - this.billsAmount[bill.value]
         }
       }
+      this.thankText += `Общая полученная сумма: ${this.userAmount}грн.`
       this.$emit('showThank', this.thankText)
       this.userAmount = null
       this.thankText = ''
