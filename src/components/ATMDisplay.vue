@@ -93,7 +93,7 @@ export default {
       } else {
         this.calcAmount = this.userAmount
         this.calcBillList = this.billsList.concat()
-        this.test(this.calcBillList)
+        this.splitAmountIntoBills(this.calcBillList)
       }
     },
     countBills (bill) {
@@ -113,8 +113,8 @@ export default {
           bill.count = bill.count - this.billsAmount[bill.value]
         }
       }
-      this.userAmount = null
       this.$emit('showThank', this.thankText)
+      this.userAmount = null
       this.thankText = ''
       this.billsAmount = {
         500: 0,
@@ -125,7 +125,7 @@ export default {
         10: 0
       }
     },
-    test (billList) {
+    splitAmountIntoBills (billList) {
       for (const bill of billList) {
         if (this.calcAmount) {
           this.countBills(bill)
@@ -144,7 +144,7 @@ export default {
           10: 0
         }
         billList.splice(0, 1)
-        this.test(billList)
+        this.splitAmountIntoBills(billList)
       } else if (this.calcAmount !== 0 && billList.length === 0) {
         this.$emit('showError')
         this.userAmount = null
